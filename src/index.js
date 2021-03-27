@@ -2,12 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Routes from "Routes";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routes />
+    <Router>
+      <Switch>
+        <Routes />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
