@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Spin } from "antd";
 
 import Table from "components/Table";
 import axios from "axios";
@@ -57,13 +57,24 @@ function Home() {
   }, [userData, tableData]);
 
   const { columns, data } = tableData;
+  const getTable = () => {
+    if (!userData) {
+      return <Spin size="large" />;
+    }
+    return (
+      <Col lg={18}>
+        <Table
+          style={{ marginTop: ".5rem" }}
+          bordered
+          columns={columns}
+          dataSource={data}
+        />
+      </Col>
+    );
+  };
   return (
     <div>
-      <Row justify="center">
-        <Col lg={18}>
-          <Table bordered columns={columns} dataSource={data} />
-        </Col>
-      </Row>
+      <Row justify="center">{getTable()}</Row>
     </div>
   );
 }
