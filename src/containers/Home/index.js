@@ -59,7 +59,7 @@ function Home() {
   const { columns, data } = tableData;
   return (
     <div>
-      <Row>
+      <Row justify="center">
         <Col lg={18}>
           <Table bordered columns={columns} dataSource={data} />
         </Col>
