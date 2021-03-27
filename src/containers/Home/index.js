@@ -54,7 +54,7 @@ function Home() {
       columns,
       data,
     });
-  }, [userData]);
+  }, [userData, tableData]);
 
   const { columns, data } = tableData;
   return (
