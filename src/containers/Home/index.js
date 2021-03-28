@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Spin } from "antd";
+import { Row, Col, Spin, message } from "antd";
 
 import Table from "components/Table";
 import axios from "axios";
@@ -15,7 +15,11 @@ function Home() {
     const fetchUserData = async () => {
       axios
         .get(`${API_ROOT}task/1137/report/details/new`)
-        .then((res) => setUserData(res.data));
+        .then((res) => setUserData(res.data))
+        .catch((err) => {
+          console.log(err);
+          message.error("Some thing went wrong!");
+        });
     };
     fetchUserData();
   }, []);
