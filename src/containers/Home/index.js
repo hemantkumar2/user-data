@@ -12,7 +12,7 @@ function Home() {
   const [tableData, setTableData] = useState({ columns: [], data: [] });
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserData = () => {
       axios
         .get(`${API_ROOT}task/1137/report/details/new`)
         .then((res) => setUserData(res.data))
@@ -22,6 +22,10 @@ function Home() {
         });
     };
     fetchUserData();
+
+    return () => {
+      console.log("UNSUBSCRIBE");
+    };
   }, []);
 
   useEffect(() => {
@@ -53,12 +57,14 @@ function Home() {
         });
         return userObj;
       });
-    setTableData({
-      ...tableData,
-      columns,
-      data,
-    });
-  }, [userData, tableData]);
+
+    if (data) {
+      setTableData({
+        columns,
+        data: data,
+      });
+    }
+  }, [userData]);
 
   const { columns, data } = tableData;
   const getTable = () => {
